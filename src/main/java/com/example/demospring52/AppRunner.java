@@ -1,6 +1,7 @@
 package com.example.demospring52;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
@@ -26,6 +27,9 @@ public class AppRunner implements ApplicationRunner {
     @Autowired
     Proto proto;
 
+    @Value("${app.name}")
+    String appname;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("PROTO");
@@ -46,5 +50,7 @@ public class AppRunner implements ApplicationRunner {
         Environment environment = ctx.getEnvironment();
         System.out.println("Active" + Arrays.toString(environment.getActiveProfiles()));
         System.out.println("Default" + Arrays.toString(environment.getDefaultProfiles()));
+        System.out.println(environment.getProperty("app.name"));
+        System.out.println("appname: " + appname);
     }
 }
