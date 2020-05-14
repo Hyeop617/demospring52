@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
@@ -21,8 +22,12 @@ import java.util.Arrays;
 @Component
 public class AppRunner implements ApplicationRunner {
 
+//     실제로는 이렇게 직접 ConversionService를 사용하는 일은 거의 없을 것.
     @Autowired
-    Validator validator;
+    ConversionService conversionService;
+
+//    @Autowired
+//    Validator validator;
 
 //    @Autowired
 //    ResourceLoader resourceLoader;
@@ -50,6 +55,11 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        System.out.println(conversionService);
+        System.out.println(conversionService.getClass().toString());
+
+
+
         // 스프링 부트 2.0.5 버전 이하
 //        ValidationEvent validationEvent = new ValidationEvent();
 //        EventValidator eventValidator = new EventValidator();
@@ -68,20 +78,20 @@ public class AppRunner implements ApplicationRunner {
         // 스프링 부트 2.0.5 이상일 때
         // 먼저 Bean에 Validator 등록.
         // 그리고 Event 클래스(ValidationEvent)에 Annotation 붙이기 (ex) @NotEmpty))
-        System.out.println(validator.getClass());
-        ValidationEvent event = new ValidationEvent();
-        event.setLimit(-1);
-        event.setEmail("aaa");
-        Errors errors = new BeanPropertyBindingResult(event,"event");
-
-        validator.validate(event,errors);
-        System.out.println(errors.hasErrors());
-
-        errors.getAllErrors().forEach(e-> {
-            System.out.println("========= error code =========");
-            Arrays.stream(e.getCodes()).forEach(System.out::println);
-            System.out.println(e.getDefaultMessage());
-        });
+//        System.out.println(validator.getClass());
+//        ValidationEvent event = new ValidationEvent();
+//        event.setLimit(-1);
+//        event.setEmail("aaa");
+//        Errors errors = new BeanPropertyBindingResult(event,"event");
+//
+//        validator.validate(event,errors);
+//        System.out.println(errors.hasErrors());
+//
+//        errors.getAllErrors().forEach(e-> {
+//            System.out.println("========= error code =========");
+//            Arrays.stream(e.getCodes()).forEach(System.out::println);
+//            System.out.println(e.getDefaultMessage());
+//        });
 
 
 

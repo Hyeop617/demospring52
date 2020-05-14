@@ -14,13 +14,18 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+// Formatter or Converter와 Component를 Test에 Bean으로 등록
+// Component-Scan이 가능한 Bean이여야 Bean으로 등록이 됨.(Controller나 Component)
+@WebMvcTest({
+        EventBindingConverter.StringToEventConverter.class,
+        EventBindingController.class
+})
 class EventBindingControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @Test
-    public void getTest() throws Exception{
+    public void getTest() throws Exception {
         mockMvc.perform(get("/event/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("1"));
