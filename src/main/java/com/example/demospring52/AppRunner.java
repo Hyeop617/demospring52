@@ -1,6 +1,7 @@
 package com.example.demospring52;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationEventPublisher;
@@ -23,8 +24,8 @@ import java.util.Arrays;
 public class AppRunner implements ApplicationRunner {
 
 //     실제로는 이렇게 직접 ConversionService를 사용하는 일은 거의 없을 것.
-    @Autowired
-    ConversionService conversionService;
+//    @Autowired
+//    ConversionService conversionService;
 
 //    @Autowired
 //    Validator validator;
@@ -55,8 +56,10 @@ public class AppRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println(conversionService);
-        System.out.println(conversionService.getClass().toString());
+
+
+//        System.out.println(conversionService);
+//        System.out.println(conversionService.getClass().toString());
 
 
 
