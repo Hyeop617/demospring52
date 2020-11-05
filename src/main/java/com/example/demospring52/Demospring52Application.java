@@ -1,6 +1,7 @@
 package com.example.demospring52;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +15,13 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class Demospring52Application {
 
     public static void main(String[] args) {
+
+        // 웹 서버 동작 끄는 방법. (실행 속도 더 빠름)
+//        SpringApplication app = new SpringApplication(Demospring52Application.class);
+//        app.setWebApplicationType(WebApplicationType.NONE);
+//        app.run(args);
+
+
         SpringApplication.run(Demospring52Application.class,args);
     }
 
@@ -28,3 +36,4 @@ public class Demospring52Application {
 //    }
 
 }
+    
